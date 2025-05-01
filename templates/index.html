@@ -234,12 +234,17 @@
     document.getElementById('current-time').textContent = currentTime;
   }
 
-  function updateHebrewDate() {
-    const hebrewDate = new Date().toLocaleDateString('he-IL-u-ca-hebrew', {
-      year: 'numeric', month: 'long', day: 'numeric'
-    });
-    document.getElementById('hebrew-date').textContent = hebrewDate;
+async function updateHebrewDate() {
+  try {
+    const response = await fetch('https://www.hebcal.com/converter?cfg=json&gy=2025&gm=5&gd=2&g2h=1');
+    const data = await response.json();
+    const formatted = `${data.hebrew}`;
+    document.getElementById('hebrew-date').textContent = formatted;
+  } catch (error) {
+    document.getElementById('hebrew-date').textContent = "שגיאה בהבאת תאריך";
   }
+}
+
 
   function updateGregorianDate() {
     const gregorianDate = new Date().toLocaleDateString('he-IL', {
