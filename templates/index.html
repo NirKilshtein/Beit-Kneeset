@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>זמני היום במודיעין - תפארת מורשת</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html, body {
+      margin: 20;
+      padding: 10;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f4f4f4; /* צבע קרם */
+      direction: rtl;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 1px;
+      border-radius: 1px;
+      box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
+    }
+
+    .notes {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 14px;
+  border-radius: 38px;
+  justify-content: space-around;
+  box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
+  margin-top: 130px; /* זה מה שמזיז אותו טיפה למטה */
+}
+
+  .notes_new {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(50px);
+  padding: 50px;
+  border-radius: 100px;
+  box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
+  margin-top: 150px; /* זה מה שמזיז אותו טיפה למטה */
+}
+
+    .times-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 30px;
+    }
+
+    .times-table th, .times-table td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    .times-table th {
+      background-color: #ecf0f1;
+      color: black;
+    }
+
+    .times-table td {
+      background-color: #ecf0f1;
+    }
+
+    .time-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 17px;
+      padding: 2px;
+      border-bottom: 1px solid #2d1c1c;
+      margin-bottom : 0;
+    }
+
+    .time-item:last-child {
+      border-bottom: none;
+    }
+
+    /* כותרת */
+    header {
+      background-color: #f4f4f4; /* קרם */
+      padding: 10px;
+    }
+
+    header h1 {
+      color: #f4f4f4; /* חום כהה */
+    }
+
+    /* כרטיסים */
+    .card {
+      background-color: #f4f4f4; /* קרם בהיר יותר */
+      border: 1px solid #e3c68d; /* גוון חום בהיר */
+      padding: 0px;
+      justify-content: center;
+    }
+
+    .text-orange-800 {
+      color: #8b4513; /* חום כהה */
+    }
+
+    .text-orange-900 {
+      color: #6a3e2c; /* חום יותר כהה */
+    }
+  </style>
+</head>
+<body>
+
+<div class="flex flex-col h-full">
+
+  <!-- כותרת -->
+  <header class="py-2 flex items-center justify-center h-full">
+    <h1 class="text-3xl font-bold text-center text-orange-800">ברוכים הבאים לבית הכנסת הספרדי תפארת מורשת</h1>
+  </header>
+
+  <!-- תוכן ראשי -->
+  <main class="flex-1 px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-full">
+
+      <!-- עמודה ימנית -->
+      <div class="flex flex-col justify-between h-full">
+        <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/a7b98a_IMG-20250309-WA0042.jpg"
+             alt="ברוכים הבאים לבית הכנסת הספרדי תפארת מורשת"
+             class="rounded-lg mb-2 w-full h-32 object-contain"/>
+
+        <div class="card text-center text-sm mb-2">
+          <div class="text-orange-800 font-semibold" id="hebrew-date">טוען...</div>
+          <div class="text-orange-900 font-medium" id="gregorian-date">טוען...</div>
+          <div class="text-orange-900 font-bold text-lg" id="current-time">טוען...</div>
+        </div>
+
+        <div class="card mb-2">
+          <h2 class="text-center text-orange-800 font-bold mb-5">זמני תפילות</h2>
+          <div class="space-y-[2px] leading-none">
+            <div class="time-item"><span>נץ חמה</span><span id="sunrise">...</span></div>
+            <div class="time-item"><span>סוף ק"ש מג"א</span><span id="shmaLastTimeMGA">...</span></div>
+            <div class="time-item"><span>סוף תפילה מג"א</span><span id="tefilaLastTimeMGA">...</span></div>
+            <div class="time-item"><span>מנחה גדולה</span><span id="minchaGedola">...</span></div>
+            <div class="time-item"><span>פלג מנחה</span><span id="plagHamincha">...</span></div>
+            <div class="time-item"><span>שקיעה</span><span id="sunset">...</span></div>
+            <div class="time-item"><span>צאת הכוכבים</span><span id="nightfall">...</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="text-center font-bold text-orange-800 mb-1">זמני שבת</h3>
+          <div class="grid grid-cols-2 gap-2 text-center text-sm">
+            <div><div class="text-orange-800">הדלקת נרות</div><div id="shabbat-lighting">...</div></div>
+            <div><div class="text-orange-800">צאת שבת</div><div id="shabbat-out">...</div></div>
+            <div><div class="text-orange-800">פלג המנחה</div><div id="shabbat-oa11ut">17:35</div></div>
+            <div><div class="text-orange-800">שיר השירים</div><div id="shabbat-oששut">18:55</div></div>
+            <div><div class="text-orange-800">מנחה וקבלת שבת</div><div id="shabbat-o11aut">19:05</div></div>
+            <div><div class="text-orange-800">שחרית</div><div id="shabbat-oששששut">7:40</div></div>
+            <div><div class="text-orange-800">מנחה גדולה</div><div id="shabbat-oaשששut">13:15</div></div>
+            <div><div class="text-orange-800">מנחה שנייה</div><div id="shabbat-oשש/שut">18:40</div></div>
+            <div><div class="text-orange-800">סעודה שלישית</div><div id="shabbat-oaaשש/שut">19:00</div></div>
+            <div><div class="text-orange-800">ערבית מוצ"ש</div><div id="shabbat-oaשש/שut">19:45</div></div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- סליידר -->
+<div class="md:col-span-2 flex flex-col justify-between h-full relative overflow-hidden">
+
+  <div id="slider" class="relative w-full h-full">
+
+    <!-- סלייד 1 -->
+    <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-100">
+      <h2 class="text-6xl font-bold text-orange-800">הודעות חשובות</h2>
+      <p class="text-3xl mt-4 font-bold text-orange-900">מברכים את משפחת אמויאל לבר המצווה של הילד</p>
+    </div>
+
+    <!-- סלייד 2 -->
+    <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
+      <h2 class="text-7xl font-bold text-orange-800">פרשת השבוע</h2>
+      <p class="ext-10xl mt-4 font-bold text-orange-900">
+        זֹאת תִּהְיֶה תּוֹרַת הַמְּצֹרָע" (ויקרא י"ד, ב')<br>
+        חכמינו מסבירים שהצָּרַעַת באה על חטאי הדיבור, במיוחד על לשון הרע.<br>
+        למה התורה מתארת תהליך שלם של בידוד, טהרה והבאת קרבן?<br>
+        כדי ללמד שהמילים שלנו בונות או הורסות – לא פחות.
+      </p>
+    </div>
+
+    <!-- סלייד 3 -->
+    <div class="slide absolute transition-opacity duration-700 opacity-0" style="inset: 35px;">
+      <h3 class="text-5xl font-bold text-center mb-2 text-orange-800">שיעורים </h3>
+      <table class="times-table text-sm">
+        <thead>
+          <tr><th>יום</th><th>שעה</th><th>נושא</th><th>מרצה</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ראשון</td><td>20:30</td><td>טהרת המשפחה</td><td>הרב אליהו אלחרר</td></tr>
+          <tr><td>רביעי</td><td>20:30</td><td>פרשת השבוע</td><td>הרב ערן ברוש</td></tr>
+          <tr><td>שבת</td><td>17:45</td><td>הלכות שבת</td><td>הרב ערן ברוש</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  const prayerTimes = {
+    city: "מודיעין",
+    date: "2025-05-01",
+    sunrise: "06:15",
+    shmaLastTimeMGA: "07:45",
+    tefilaLastTimeMGA: "09:00",
+    minchaGedola: "12:45",
+    plagHamincha: "16:30",
+    sunset: "19:30",
+    nightfall: "20:00",
+    shabbatLighting: "18:50",
+    shabbatOut: "20:05"
+  };
+
+  document.getElementById('sunrise').textContent = prayerTimes.sunrise;
+  document.getElementById('shmaLastTimeMGA').textContent = prayerTimes.shmaLastTimeMGA;
+  document.getElementById('tefilaLastTimeMGA').textContent = prayerTimes.tefilaLastTimeMGA;
+  document.getElementById('minchaGedola').textContent = prayerTimes.minchaGedola;
+  document.getElementById('plagHamincha').textContent = prayerTimes.plagHamincha;
+  document.getElementById('sunset').textContent = prayerTimes.sunset;
+  document.getElementById('nightfall').textContent = prayerTimes.nightfall;
+  document.getElementById('shabbat-lighting').textContent = prayerTimes.shabbatLighting;
+  document.getElementById('shabbat-out').textContent = prayerTimes.shabbatOut;
+
+  function updateTime() {
+    const currentTime = new Date().toLocaleTimeString('he-IL');
+    document.getElementById('current-time').textContent = currentTime;
+  }
+
+  function updateHebrewDate() {
+    const hebrewDate = new Date().toLocaleDateString('he-IL-u-ca-hebrew', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
+    document.getElementById('hebrew-date').textContent = hebrewDate;
+  }
+
+  function updateGregorianDate() {
+    const gregorianDate = new Date().toLocaleDateString('he-IL', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+    document.getElementById('gregorian-date').textContent = gregorianDate;
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHebrewDate();
+    updateGregorianDate();
+  }, 1000);
+
+</script>
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.opacity = i === index ? '1' : '0';
+    });
+  }
+
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }, 8000); // כל 8 שניות
+
+  // התחלה
+  showSlide(currentSlide);
+</script>
+
+</body>
+</html>
