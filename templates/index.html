@@ -174,7 +174,7 @@
 
   <div class="mt-6 text-2xl text-orange-900 leading-relaxed max-w-3xl mx-auto">
     <p>מאחלים לך שתגדל לתפארת, תלך בדרך הטובה, ותמיד תאיר באור פניך.</p>
-    <p class="mt-4 italic">"ה' יברכך וישמרך" (במדבר ו', כ"ד)</p>
+    <p class="mt-4 italic">וְֽהָיָ֗ה כְּעֵץ֮ שָׁת֢וּל עַֽל־פַּלְגֵ֫י־מָ֥יִם אֲשֶׁ֤ר פִּרְי֨ו יִתֵּ֬ן בְּעִתּ֗וֹ וְעָלֵ֥הוּ לֹֽא־יִבּ֑וֹל וְכֹ֖ל אֲשֶׁר־יַעֲשֶׂ֣ה יַצְלִֽיחַ</p>
     <p class="mt-4 font-bold">באהבה, מקהילת בית הכנסת ❤️</p>
   </div>
 </div>
@@ -320,7 +320,6 @@ async function updateHebrewDate() {
   document.addEventListener("DOMContentLoaded", updateTimesFromApi);
 </script>
 
-
 <script>
   const slides = document.querySelectorAll('.slide');
   let currentSlide = 0;
@@ -373,6 +372,11 @@ async function updateTimesFromApi() {
   document.getElementById("shabbat-out").textContent = shabbatTimes.shabbatOut;
 }
 </script>
-
+<script>
+  // רענון כל 10 דקות (1 * 60 * 1000 מילי-שניות)
+  setTimeout(() => {
+    window.location.reload();
+  }, 1 * 60 * 1000);
+</script>
 </body>
 </html>
