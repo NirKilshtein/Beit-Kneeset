@@ -182,6 +182,13 @@
       </p>
     </div>
 
+<div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
+  <h2 class="text-8xl font-bold text-orange-800">ספירת העומר</h2> <!-- גדלתי את הטקסט ל-5xl -->
+  <p class="text-6xl mt-4 font-bold text-orange-900" id="omer-count"> <!-- הגדלתי את הטקסט ל-3xl -->
+    טוען...
+  </p>
+</div>
+
     <!-- סלייד 3 -->
     <div class="slide absolute transition-opacity duration-700 opacity-0" style="inset: 35px;">
       <h3 class="text-5xl font-bold text-center mb-2 text-orange-800">שיעורים </h3>
@@ -197,13 +204,58 @@
       </table>
     </div>
 
+
+
   </div>
 </div>
 
     </div>
   </main>
 </div>
+<script>
+  async function updateOmerCount() {
+  try {
+    // שולחים בקשה ל-API שמחזיר את נתוני ספירת העומר
+    const response = await fetch('https://www.hebcal.com/converter?cfg=json&gy=2025&gm=5&gd=2&g2h=1');
+    const data = await response.json();
 
+    // שולפים את המידע מתוך האירועים (events)
+    const omerEvent = data.events.find(event => event.includes('day of the Omer'));
+
+    if (omerEvent) {
+      // שולפים את היום של העומר מתוך המידע
+      const omerDayMatch = omerEvent.match(/(\d+)(?:th)? day of the Omer/);
+      const omerDay = omerDayMatch ? parseInt(omerDayMatch[1]) : null;
+
+      if (omerDay) {
+        // חישוב השבועות והימים
+        const weeks = Math.floor(omerDay / 7);
+        const days = omerDay % 7;
+
+        // יצירת התצוגה
+        const omerDisplay = `היום ${omerDay} לעומר שהם ${weeks} שבועות ו-${days} ימים`;
+
+        // עדכון התוכן בדף HTML
+        document.getElementById('omer-count').textContent = omerDisplay;
+      } else {
+        document.getElementById('omer-count').textContent = "לא נמצאה ספירת העומר";
+      }
+    } else {
+      document.getElementById('omer-count').textContent = "לא נמצאה ספירת העומר";
+    }
+  } catch (error) {
+    // במקרה של שגיאה
+    document.getElementById('omer-count').textContent = "שגיאה בהבאת ספירת העומר";
+  }
+}
+
+// קריאה לפונקציה לעדכון ספירת העומר
+updateOmerCount();
+
+setInterval(updateOmerCount, 3600000); // כל שעה (60 דקות)
+
+
+</script>
 <script>
   const prayerTimes = {
     city: "מודיעין",
