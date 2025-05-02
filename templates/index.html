@@ -23,6 +23,12 @@
       border-radius: 1px;
       box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
     }
+    .card_shabat {
+      background-color: #f4f4f4; /* קרם בהיר יותר */
+      border: 1px solid #e3c68d; /* גוון חום בהיר */
+      padding: 10px;
+      justify-content: center;
+    }
 
     .notes {
   background-color: rgba(255, 255, 255, 0.8);
@@ -91,7 +97,7 @@
     .card {
       background-color: #f4f4f4; /* קרם בהיר יותר */
       border: 1px solid #e3c68d; /* גוון חום בהיר */
-      padding: 0px;
+      padding: 20px;
       justify-content: center;
     }
 
@@ -130,19 +136,15 @@
         </div>
 
         <div class="card mb-2">
-          <h2 class="text-center text-orange-800 font-bold mb-5">זמני תפילות</h2>
+          <h2 class="text-center text-orange-800 font-bold mb-5">זמני תפילות בחול</h2>
           <div class="space-y-[2px] leading-none">
-            <div class="time-item"><span>נץ חמה</span><span id="sunrise">...</span></div>
-            <div class="time-item"><span>סוף ק"ש מג"א</span><span id="shmaLastTimeMGA">...</span></div>
-            <div class="time-item"><span>סוף תפילה מג"א</span><span id="tefilaLastTimeMGA">...</span></div>
-            <div class="time-item"><span>מנחה גדולה</span><span id="minchaGedola">...</span></div>
-            <div class="time-item"><span>פלג מנחה</span><span id="plagHamincha">...</span></div>
-            <div class="time-item"><span>שקיעה</span><span id="sunset">...</span></div>
-            <div class="time-item"><span>צאת הכוכבים</span><span id="nightfall">...</span></div>
+            <div class="time-item"><span>נץ חמה</span><span id="sunrise">5:15</span></div>
+            <div class="time-item"><span>מנחה</span><span id="minchaGedola">19:10</span></div>
+            <div class="time-item"><span>ערבית</span><span id="nightfall">19:45</span></div>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card_shabat">
           <h3 class="text-center font-bold text-orange-800 mb-1">זמני שבת</h3>
           <div class="grid grid-cols-2 gap-2 text-center text-sm">
             <div><div class="text-orange-800">הדלקת נרות</div><div id="shabbat-lighting">...</div></div>
@@ -163,13 +165,18 @@
       <!-- סליידר -->
 <div class="md:col-span-2 flex flex-col justify-between h-full relative overflow-hidden">
 
-  <div id="slider" class="relative w-full h-full">
+  <!-- סלייד 1 -->
+<div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-100">
+  <h2 class="text-6xl font-bold text-orange-800">הודעות חשובות</h2>
+  <p class="text-3xl mt-4 font-bold text-orange-900">מברכים את משפחת אמויאל לבר המצווה של הילד</p>
 
-    <!-- סלייד 1 -->
-    <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-100">
-      <h2 class="text-6xl font-bold text-orange-800">הודעות חשובות</h2>
-      <p class="text-3xl mt-4 font-bold text-orange-900">מברכים את משפחת אמויאל לבר המצווה של הילד</p>
-    </div>
+  <div class="mt-6 text-2xl text-orange-900 leading-relaxed max-w-3xl mx-auto">
+    <p>מאחלים לך שתגדל לתפארת, תלך בדרך הטובה, ותמיד תאיר באור פניך.</p>
+    <p class="mt-4 italic">"ה' יברכך וישמרך" (במדבר ו', כ"ד)</p>
+    <p class="mt-4 font-bold">באהבה, מקהילת בית הכנסת ❤️</p>
+  </div>
+</div>
+
 
     <!-- סלייד 2 -->
     <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
@@ -264,22 +271,22 @@ setInterval(updateOmerCount, 3600000); // כל שעה (60 דקות)
     shmaLastTimeMGA: "07:45",
     tefilaLastTimeMGA: "09:00",
     minchaGedola: "12:45",
-    plagHamincha: "16:30",
+    plagHamincha: "19:10",
     sunset: "19:30",
     nightfall: "20:00",
     shabbatLighting: "18:50",
     shabbatOut: "20:05"
   };
 
-  document.getElementById('sunrise').textContent = prayerTimes.sunrise;
-  document.getElementById('shmaLastTimeMGA').textContent = prayerTimes.shmaLastTimeMGA;
-  document.getElementById('tefilaLastTimeMGA').textContent = prayerTimes.tefilaLastTimeMGA;
-  document.getElementById('minchaGedola').textContent = prayerTimes.minchaGedola;
-  document.getElementById('plagHamincha').textContent = prayerTimes.plagHamincha;
-  document.getElementById('sunset').textContent = prayerTimes.sunset;
-  document.getElementById('nightfall').textContent = prayerTimes.nightfall;
-  document.getElementById('shabbat-lighting').textContent = prayerTimes.shabbatLighting;
-  document.getElementById('shabbat-out').textContent = prayerTimes.shabbatOut;
+<!--  document.getElementById('sunrise').textContent = prayerTimes.sunrise;-->
+<!--  document.getElementById('shmaLastTimeMGA').textContent = prayerTimes.shmaLastTimeMGA;-->
+<!--  document.getElementById('tefilaLastTimeMGA').textContent = prayerTimes.tefilaLastTimeMGA;-->
+<!--  document.getElementById('minchaGedola').textContent = prayerTimes.minchaGedola;-->
+<!--  document.getElementById('plagHamincha').textContent = prayerTimes.plagHamincha;-->
+<!--  document.getElementById('sunset').textContent = prayerTimes.sunset;-->
+<!--  document.getElementById('nightfall').textContent = prayerTimes.nightfall;-->
+<!--  document.getElementById('shabbat-lighting').textContent = prayerTimes.shabbatLighting;-->
+<!--  document.getElementById('shabbat-out').textContent = prayerTimes.shabbatOut;-->
 
   function updateTime() {
     const currentTime = new Date().toLocaleTimeString('he-IL');
