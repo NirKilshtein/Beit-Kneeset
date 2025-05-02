@@ -373,10 +373,10 @@ async function updateTimesFromApi() {
 }
 </script>
 <script>
-  // רענון כל 10 דקות (1 * 60 * 1000 מילי-שניות)
-  setTimeout(() => {
+  // רענון הדף כל 10 דקות
+  setInterval(() => {
     window.location.reload();
-  }, 1 * 60 * 1000);
+  }, 5 * 60 * 1000); // 600,000 מילישניות = 10 דקות
 </script>
 </body>
 </html>
