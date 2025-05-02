@@ -373,10 +373,20 @@ async function updateTimesFromApi() {
 }
 </script>
 <script>
-  // רענון הדף כל 10 דקות
-  setInterval(() => {
-    window.location.reload();
-  }, 5 * 60 * 1000); // 600,000 מילישניות = 10 דקות
-</script>
+    // שמירה על מיקום הגלילה לפני הרענון
+    localStorage.setItem('scrollPos', window.scrollY);
+
+    setInterval(() => {
+      window.location.reload();
+    }, 24 * 60 * 60 * 1000); // יומיים
+
+    // אחרי טעינת הדף – גלילה חזרה למיקום הקודם
+    window.addEventListener('load', () => {
+      const scrollPos = localStorage.getItem('scrollPos');
+      if (scrollPos !== null) {
+        window.scrollTo(0, parseInt(scrollPos));
+      }
+    });
+  </script>
 </body>
 </html>
