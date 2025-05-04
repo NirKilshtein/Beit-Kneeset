@@ -33,6 +33,7 @@
   margin: 10px auto;
   max-width: 1600px;
   font-size: 4.5rem; /* טקסט ענק */
+  overflow-y: auto;
 }
 
    .card_hol {
@@ -133,6 +134,29 @@
     .text-orange-900 {
       color: #6a3e2c; /* חום יותר כהה */
     }
+
+
+    .auto-scroll-vertical {
+  height: 356px; /* Adjust to desired visible height */
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-inner {
+  animation: scroll-up 13s linear infinite;
+  display: inline-block;
+}
+
+@keyframes scroll-up {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -170,7 +194,9 @@
           </div>
         </div>
 
-        <div class="card_shabat">
+
+          <div class="card_shabat auto-scroll-vertical">
+          <div class="scroll-inner">
           <h3 class="text-center font-bold text-orange-800 text-3xl mb-6">זמני שבת</h3>
           <div class="grid grid-cols-3 gap-2 text-center text-sm">
             <div><div class="text-orange-800">הדלקת נרות</div><div id="hadlaka"></div></div>
@@ -182,7 +208,7 @@
             <div><div class="text-orange-800">מנחה גדולה</div><div id="mincha_gdola"></div></div>
             <div><div class="text-orange-800">מנחה שנייה</div><div id="mincha_sniya"></div></div>
             <div><div class="text-orange-800">ערבית מוצ"ש</div><div id="arvit"></div></div>
-
+</div>
           </div>
         </div>
       </div>
