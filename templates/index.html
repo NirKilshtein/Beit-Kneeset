@@ -224,47 +224,64 @@
 
 
 
-<script>
-  let omerDay = 21;
-  let hasUpdatedToday = false;
+  <script>
+    let omerDay = 21;
+    let hasUpdatedToday = false;
+    let sunsetTime = null;
 
-  function displayOmerCount() {
-    const weeks = Math.floor(omerDay / 7);
-    const days = omerDay % 7;
-    const omerDisplay = `היום ${omerDay} לעומר, שהם ${weeks} שבועות ו-${days} ימים`;
-    const omerElement = document.getElementById('omer-count');
-    if (omerElement) {
-      omerElement.textContent = omerDisplay;
-    }
-  }
-
-  function updateOmerCount() {
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-
-    // הצגת הספירה תמיד
-    displayOmerCount();
-
-    // עדכון הספירה רק פעם אחת ביום בשעה 20:00
-    if (hours === 20 && minutes === 0 && !hasUpdatedToday) {
-      omerDay++;
-      hasUpdatedToday = true;
-      displayOmerCount(); // עדכן את ההצגה עם הספירה החדשה
+    // הצגת הספירה
+    function displayOmerCount() {
+      const weeks = Math.floor(omerDay / 7);
+      const days = omerDay % 7;
+      const text = `היום ${omerDay} לעומר, שהם ${weeks} שבועות ו-${days} ימים`;
+      const el = document.getElementById('omer-count');
+      if (el) el.textContent = text;
     }
 
-    // איפוס הדגל אחרי שעה 20
-    if (hours !== 20) {
-      hasUpdatedToday = false;
+    // בקשת זמן שקיעה לפי מיקום גאוגרפי
+    function fetchSunsetTime(lat, lng) {
+      const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&formatted=0`;
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          const sunsetUTC = new Date(data.results.sunset);
+          sunsetTime = new Date(sunsetUTC.toLocaleString('en-US', { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone }));
+          console.log("שקיעה היום ב:", sunsetTime.toLocaleTimeString());
+        });
     }
-  }
 
-  // טעינה ראשונית והרצה קבועה
-  window.addEventListener('DOMContentLoaded', () => {
-    updateOmerCount(); // פעם ראשונה
-    setInterval(updateOmerCount, 30000); // כל 30 שניות
-  });
+    // בדיקה ועדכון ספירה
+    function updateOmerCount() {
+      const now = new Date();
+      displayOmerCount();
 
+      if (sunsetTime && now >= sunsetTime && !hasUpdatedToday) {
+        omerDay++;
+        hasUpdatedToday = true;
+        displayOmerCount();
+        console.log("עודכן ליום חדש לעומר");
+      }
+
+      // איפוס למחר
+      if (now.getHours() < 12) {
+        hasUpdatedToday = false;
+      }
+    }
+
+    // התחלה
+    window.addEventListener('DOMContentLoaded', () => {
+      // קבלת מיקום משתמש
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          fetchSunsetTime(position.coords.latitude, position.coords.longitude);
+        }, () => {
+          alert("לא ניתן לקבל מיקום, לא ניתן לקבוע זמן שקיעה.");
+        });
+      }
+
+      updateOmerCount();
+      setInterval(updateOmerCount, 30000); // כל 30 שניות
+    });
   </script>
 
 <script>
