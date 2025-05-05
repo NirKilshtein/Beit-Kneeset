@@ -25,12 +25,36 @@
     }
 
     .card_shabat {
-      background-color: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      padding: 78px;
-      border-radius: 65px;
-      box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
-    }
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 84px;
+  border-radius: 50px;
+  box-shadow: 0 8px 80px rgba(0, 0, 0, 0.2);
+  margin: 10px auto;
+  max-width: 1600px;
+  font-size: 4.5rem; /* טקסט ענק */
+  overflow-y: auto;
+}
+
+   .card_hol {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 72px;
+  border-radius: 50px;
+  box-shadow: 0 8px 80px rgba(0, 0, 0, 0.2);
+  margin: 10px auto;
+  max-width: 1600px;
+  font-size: 4.5rem; /* טקסט ענק */
+}
+
+/* למסכים גדולים מאוד */
+@media (min-width: 1920px) {
+  .card_shabat {
+    padding: 80px;
+    font-size: 3rem;
+    border-radius: 60px;
+  }
+}
 
     .notes {
   background-color: rgba(255, 255, 255, 0.8);
@@ -110,6 +134,29 @@
     .text-orange-900 {
       color: #6a3e2c; /* חום יותר כהה */
     }
+
+
+    .auto-scroll-vertical {
+  height: 356px; /* Adjust to desired visible height */
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-inner {
+  animation: scroll-up 13s linear infinite;
+  display: inline-block;
+}
+
+@keyframes scroll-up {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -118,7 +165,7 @@
 
   <!-- כותרת -->
   <header class="py-2 flex items-center justify-center h-full">
-    <h1 class="text-3xl font-bold text-center text-orange-800">ברוכים הבאים לבית הכנסת הספרדי "תפארת מורשת"</h1>
+    <h1 class="text-3xl font-bold text-center text-orange-800", style="color: #B88A44;">ברוכים הבאים לבית הכנסת הספרדי "תפארת מורשת"</h1>
   </header>
 
   <!-- תוכן ראשי -->
@@ -132,45 +179,86 @@
              class="rounded-lg mb-2 w-full h-32 object-contain"/>
 
         <div class="card text-center text-sm mb-2">
-          <div class="text-orange-800 font-semibold" id="hebrew-date">טוען...</div>
-          <div class="text-orange-900 font-medium" id="gregorian-date">טוען...</div>
-          <div class="text-orange-900 font-bold text-lg" id="current-time">טוען...</div>
+          <div class="text-orange-333333 font-semibold" id="hebrew-date">טוען...</div>
+          <div class="text-orange-333333 font-medium" id="gregorian-date">טוען...</div>
+          <div class="text-orange-333333 font-bold text-lg" id="current-time">טוען...</div>
         </div>
 
-        <div class="card_shabat">
-          <h2 class="text-center font-bold text-orange-800 text-3xl mb-6">זמני תפילות בחול</h2>
-          <div class="grid grid-cols-2 gap-2 text-center text-sm">
-             <div><div class="text-orange-800">שחרית נץ</div><div id="netz"></div></div>
-            <div><div class="text-orange-800">שחרית מניין שני</div><div id="shaharit_hol"></div></div>
-            <div><div class="text-orange-800">מנחה</div><div id="micnhae_hol"></div></div>
-            <div><div class="text-orange-800">ערבית</div><div id="arvit_hol"></div></div>
-          </div>
-        </div>
+        <div class="card_hol">
+  <h2 class="text-center font-bold text-[#333333] text-3xl mb-6">🕍 זמני תפילות בחול</h2>
+  <div class="grid grid-cols-2 gap-2 text-center text-sm">
+    <div>
+      <div class="text-[#333333]">☀️ שחרית נץ</div>
+      <div id="netz"></div>
+    </div>
+    <div>
+      <div class="text-[#333333]">🌅 שחרית מניין שני</div>
+      <div id="shaharit_hol"></div>
+    </div>
+    <div>
+      <div class="text-[#333333]">🌇 מנחה</div>
+      <div id="micnhae_hol"></div>
+    </div>
+    <div>
+      <div class="text-[#333333]">🌃 ערבית</div>
+      <div id="arvit_hol"></div>
+    </div>
+  </div>
+</div>
 
-        <div class="card_shabat">
-          <h3 class="text-center font-bold text-orange-800 text-3xl mb-6">זמני שבת</h3>
-          <div class="grid grid-cols-3 gap-2 text-center text-sm">
-            <div><div class="text-orange-800">הדלקת נרות</div><div id="hadlaka"></div></div>
-            <div><div class="text-orange-800">צאת שבת</div><div id="shabt_out"></div></div>
-            <div><div class="text-orange-800">פלג המנחה</div><div id="micnhae_pleg"></div></div>
-            <div><div class="text-orange-800">שיר השירים</div><div id="shir_shirim"></div></div>
-            <div><div class="text-orange-800">מנחה וקבלת שבת</div><div id="kabalt_shabt"></div></div>
-            <div><div class="text-orange-800">שחרית</div><div id="shaharit"></div></div>
-            <div><div class="text-orange-800">מנחה גדולה</div><div id="mincha_gdola"></div></div>
-            <div><div class="text-orange-800">מנחה שנייה</div><div id="mincha_sniya"></div></div>
-            <div><div class="text-orange-800">ערבית מוצ"ש</div><div id="arvit"></div></div>
 
-          </div>
-        </div>
+          <div class="card_shabat">
+    <h3 class="text-center font-bold text-orange-333333 text-3xl mb-6" style="color: #333333	;">זמני שבת</h3>
+    <div class="grid grid-cols-3 gap-1 text-center text-sm">
+      <div>
+        <div class="text-orange-333333">🕯️ הדלקת נרות 🕯️</div>
+        <div id="hadlaka"></div>
       </div>
+      <div>
+        <div class="text-orange-333333">🌙 צאת שבת</div>
+        <div id="shabt_out"></div>
+      </div>
+      <div>
+        <div class="text-orange-333333">⛅ פלג המנחה</div>
+        <div id="micnhae_pleg"></div>
+      </div>
+      <div>
+        <div class="text-orange-333333">📖 שיר השירים</div>
+        <div id="shir_shirim"></div>
+      </div>
+      <div>
+        <div class="text-orange-333333">🕍 מנחה וקבלת שבת</div>
+        <div id="kabalt_shabt"></div>
+      </div>
+      <div>
+        <div class="text-orange-333333">☀️ שחרית</div>
+        <div id="shaharit"></div>
+      </div>
+      <div>
+        <div class="text-orange-333333">🕰️ מנחה גדולה</div>
+        <div id="mincha_gdola"></div>
+      </div>
+      <div>
+        <div class="text-orange-333333">🕰️ מנחה שנייה</div>
+        <div id="mincha_sniya"></div>
+      </div>
+      <div>
+        <div class="text-orange-333333">🌃 ערבית מוצ"ש</div>
+        <div id="arvit"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
       <!-- סליידר -->
 <div class="md:col-span-2 flex flex-col justify-between h-full relative overflow-hidden">
 
   <!-- סלייד 1 -->
 <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-100">
-  <h2 class="text-6xl font-bold text-orange-800">הודעות חשובות</h2>
-  <p class="text-3xl mt-4 font-bold text-orange-900">שלום רב,
+  <h2 class="text-6xl font-bold" style="color: #B88A44;">הודעות חשובות</h2>
+
+  <p class="mt-4 text-4xl text-gray-800 leading-relaxed">שלום רב,
 אנחנו מזכירים למי שרכש כיסא בבית הכנסת ועדיין לא השלים את התשלום – אנא השלימו את הסכום בהקדם האפשרי.
 לצורך בירורים או שאלות, ניתן לפנות לגבאים.
 תזכו למצוות!</p>
@@ -182,26 +270,35 @@
 
     <!-- סלייד 2 -->
     <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
-      <h2 class="text-3xl font-bold text-orange-800">דבר תורה - פרשת אחרי מות</h2>
-    <p class="text-2xl mt-4 font-bold text-orange-900">
-    "וְהִתְקַדִּשְׁתֶּם וִהְיִיתֶם קְדוֹשִׁים, כִּי קָדוֹש אני ה' אֱלֹהֵיכֶם" (ויקרא י"ט,2)<br>
+  <h2 class="text-3xl font-bold" style="color: #B88A44;">
+    דבר תורה - פרשת אחרי מות
+  </h2>
+
+  <p class="text-3xl font-bold" style="color: #B88A44;">
+    "וְהִתְקַדִּשְׁתֶּם וִהְיִיתֶם קְדוֹשִׁים, כִּי קָדוֹש אני ה' אֱלֹהֵיכֶם" (ויקרא י"ט,2)
+  </p>
+
+  <p class="mt-4 text-2xl text-gray-800 leading-relaxed">
     בפרשת "אחרי מות" התורה מצווה עלינו להיות קדושים ולהתרחק מכל חטא שיכול לפגוע בקדושתנו.<br>
     הקדושה איננה רק טהרה חיצונית, אלא גם שמירה על המילים שלנו, המעשים שלנו, והכוונות שלנו.<br>
     המילים והמעשים שלנו יכולים להרים או להרוס – כל אחד מאיתנו נדרש להיות מודע לכך ולחיות מתוך כוונה טהורה.<br>
     קדושה זו היא תהליך מתמשך, בו אנו שואפים כל הזמן להתקרב אל ה' ולהיות טהורים במעשינו.
-</p>
-    </div>
+  </p>
+</div>
 
 <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
-  <h2 class="text-8xl font-bold text-orange-800">ספירת העומר</h2> <!-- גדלתי את הטקסט ל-5xl -->
-  <p class="text-6xl mt-4 font-bold text-orange-900" id="omer-count"> <!-- הגדלתי את הטקסט ל-3xl -->
+  <h2 class="text-8xl font-bold" style="color: #B88A44;">
+    ספירת העומר
+  </h2>
+
+  <p class="mt-4 text-6xl text-gray-800 leading-relaxed"  id="omer-count">
     טוען...
   </p>
 </div>
 
     <!-- סלייד 3 -->
     <div class="slide absolute transition-opacity duration-700 opacity-0" style="inset: 35px;">
-      <h3 class="text-5xl font-bold text-center mb-2 text-orange-800">שיעורים </h3>
+      <h3 class="text-5xl font-bold text-center mb-2 text-orange-800", style="color: #B88A44;">שיעורים </h3>
       <table class="times-table text-sm">
         <thead>
           <tr><th>יום</th><th>שעה</th><th>נושא</th><th>מרצה</th></tr>
