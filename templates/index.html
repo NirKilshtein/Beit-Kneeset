@@ -322,66 +322,59 @@
 
 
     <script>
-    let omerDay = 22;
-    let hasUpdatedToday = false;
-    let sunsetTime = null;
+  let omerDay = parseInt(localStorage.getItem('omerDay')) || 24;
+  let lastUpdateDate = localStorage.getItem('lastUpdateDate');
+  let sunsetTime = null;
 
-    // הצגת הספירה
-    function displayOmerCount() {
-      const weeks = Math.floor(omerDay / 7);
-      const days = omerDay % 7;
-      const text = `היום ${omerDay} לעומר, שהם ${weeks} שבועות ו-${days} ימים`;
-      const el = document.getElementById('omer-count');
-      if (el) el.textContent = text;
+  function displayOmerCount() {
+    const weeks = Math.floor(omerDay / 7);
+    const days = omerDay % 7;
+    const text = `היום ${omerDay} לעומר, שהם ${weeks} שבועות ו-${days} ימים`;
+    const el = document.getElementById('omer-count');
+    if (el) el.textContent = text;
+  }
+
+  function fetchSunsetTime(lat, lng) {
+    const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&formatted=0`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        const sunsetUTC = new Date(data.results.sunset);
+        sunsetTime = new Date(sunsetUTC.toLocaleString('en-US', {
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        }));
+        console.log("שקיעה היום ב:", sunsetTime.toLocaleTimeString());
+        updateOmerCount();
+      })
+      .catch(err => {
+        console.error("שגיאה בקבלת זמן שקיעה:", err);
+      });
+  }
+
+  function updateOmerCount() {
+    const now = new Date();
+    const todayStr = now.toISOString().split('T')[0]; // תאריך היום בפורמט YYYY-MM-DD
+
+    // רק אם עברנו את זמן השקיעה ועדיין לא עדכנו היום
+    if (sunsetTime && now >= sunsetTime && lastUpdateDate !== todayStr) {
+      omerDay++;
+      lastUpdateDate = todayStr;
+      localStorage.setItem('omerDay', omerDay);
+      localStorage.setItem('lastUpdateDate', todayStr);
+      console.log("עודכן ליום חדש לעומר:", omerDay);
     }
 
-    // בקשת זמן שקיעה לפי קואורדינטות קבועות (תל אביב)
-    function fetchSunsetTime(lat, lng) {
-      const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&formatted=0`;
-      fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          const sunsetUTC = new Date(data.results.sunset);
-          // המרה לאזור הזמן המקומי של המכשיר
-          sunsetTime = new Date(sunsetUTC.toLocaleString('en-US', {
-            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-          }));
-          console.log("שקיעה היום ב:", sunsetTime.toLocaleTimeString());
-        })
-        .catch(err => {
-          console.error("שגיאה בקבלת זמן שקיעה:", err);
-        });
-    }
+    displayOmerCount();
+  }
 
-    // בדיקה ועדכון ספירה
-    function updateOmerCount() {
-      const now = new Date();
-      displayOmerCount();
+  window.addEventListener('DOMContentLoaded', () => {
+    const lat = 32.0853; // תל אביב
+    const lng = 34.7818;
+    fetchSunsetTime(lat, lng);
+    setInterval(updateOmerCount, 30000); // עדכון כל 30 שניות
+  });
+</script>
 
-      if (sunsetTime && now >= sunsetTime && !hasUpdatedToday) {
-        omerDay++;
-        hasUpdatedToday = true;
-        displayOmerCount();
-        console.log("עודכן ליום חדש לעומר");
-      }
-
-      // איפוס הדגל אחרי חצות
-      if (now.getHours() < 12) {
-        hasUpdatedToday = false;
-      }
-    }
-
-    // התחלה – שימוש בקואורדינטות קבועות (תל אביב)
-    window.addEventListener('DOMContentLoaded', () => {
-      const lat = 32.0853; // רוחב – תל אביב
-      const lng = 34.7818; // אורך – תל אביב
-
-      fetchSunsetTime(lat, lng); // בקשת זמן שקיעה
-
-      updateOmerCount(); // הצגה ראשונית
-      setInterval(updateOmerCount, 30000); // עדכון כל 30 שניות
-    });
-  </script>
 
 <script>
 
@@ -631,7 +624,7 @@ setInterval(function() {
   window.onload = function() {
     window.scrollTo(0, scrollPosition);
   };
-}, 2 * 60 * 60 * 1000);
+}, 1 * 60 * 60 * 1000);
 
   </script>
 </body>
