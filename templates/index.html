@@ -250,6 +250,20 @@
   </div>
 </div>
 
+<div class="md:col-span-2 flex flex-col justify-between h-full relative overflow-hidden">
+
+  <!-- סלייד עם תמונה וקישור -->
+  <div class="slide text-center absolute inset-0 transition-opacity duration-700 opacity-100">
+    <h2 class="text-4xl font-bold mt-8" style="color: #B88A44;">צדיק בא לעיר - כולם מוזמנים!</h2>
+
+    <a href="https://i.postimg.cc/R0FJgJW6/unnamed.jpg" target="_blank">
+  <img src="https://i.postimg.cc/R0FJgJW6/unnamed.jpg"
+     alt="צדיק בא לעיר"
+     class="mx-auto mt-10 rounded-xl shadow-lg w-[380px] max-w-full">
+</a>
+  </div>
+
+
 
       <!-- סליידר -->
 <div class="md:col-span-2 flex flex-col justify-between h-full relative overflow-hidden">
@@ -269,32 +283,32 @@
 
 
     <!-- סלייד 2 -->
-    <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
+   <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
   <h2 class="text-3xl font-bold" style="color: #B88A44;">
-     דבר תורה - אחרי מות - קדושים
+     דבר תורה - פרשת אמור
   </h2>
 
   <p class="text-3xl font-bold" style="color: #B88A44;">
-    "וְהִתְקַדִּשְׁתֶּם וִהְיִיתֶם קְדוֹשִׁים, כִּי קָדוֹש אני ה' אֱלֹהֵיכֶם" (ויקרא י"ט,2)
+    "אמור אל הכוהנים בני אהרן ואמרת אליהם..." (ויקרא כ"א, א')
   </p>
 
   <p class="mt-4 text-2xl text-gray-800 leading-relaxed">
-    בפרשת "אחרי מות" התורה מצווה עלינו להיות קדושים ולהתרחק מכל חטא שיכול לפגוע בקדושתנו.<br>
-    הקדושה איננה רק טהרה חיצונית, אלא גם שמירה על המילים שלנו, המעשים שלנו, והכוונות שלנו.<br>
-    המילים והמעשים שלנו יכולים להרים או להרוס – כל אחד מאיתנו נדרש להיות מודע לכך ולחיות מתוך כוונה טהורה.<br>
-    קדושה זו היא תהליך מתמשך, בו אנו שואפים כל הזמן להתקרב אל ה' ולהיות טהורים במעשינו.
+    לשון כפולה זו – "אמור ואמרת" – זכתה לפרשנות חז"ל: להזהיר גדולים על הקטנים. לא מספיק לשמור את הערכים לעצמנו – עלינו גם להעביר אותם הלאה.<br>
+    פרשת אמור עוסקת בקדושת הכוהנים ובמועדי השנה – ובכך מלמדת שכל אדם יכול להיות "כוהן קטן" – מי שמקדש את המרחב והזמן סביבו.<br>
+    דרך הדיבור, הדוגמה האישית, ושמירת מועדי הקודש – אנחנו יוצרים חיים של משמעות, ערכים ואור.<br>
+    מסר לשולחן שבת: איך אנחנו יכולים “לאמר ולומר” – לדבר ולעשות – כך שנשפיע לטובה על ילדינו, תלמידינו וסביבתנו?
   </p>
 </div>
 
-<div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
-  <h2 class="text-8xl font-bold" style="color: #B88A44;">
-    ספירת העומר
-  </h2>
+<!--<div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">-->
+<!--  <h2 class="text-8xl font-bold" style="color: #B88A44;">-->
+<!--    ספירת העומר-->
+<!--  </h2>-->
 
-  <p class="mt-4 text-6xl text-gray-800 leading-relaxed"  id="omer-count">
-    טוען...
-  </p>
-</div>
+<!--  <p class="mt-4 text-6xl text-gray-800 leading-relaxed"  id="omer-count">-->
+<!--    טוען...-->
+<!--  </p>-->
+<!--</div>-->
 
     <!-- סלייד 3 -->
     <div class="slide absolute transition-opacity duration-700 opacity-0" style="inset: 35px;">
@@ -306,7 +320,11 @@
         <tbody>
           <tr><td>ראשון</td><td>20:00</td><td>טהרת המשפחה</td><td>הרב אליהו אלחרר</td></tr>
           <tr><td>רביעי</td><td>20:00</td><td>פרשת השבוע</td><td>הרב ערן ברוש</td></tr>
+<<<<<<< HEAD
           <tr><td>שבת</td><td>17:50</td><td>הלכות שבת</td><td>הרב ערן ברוש</td></tr>
+=======
+          <tr><td>שבת</td><td>17:25</td><td>הלכות שבת</td><td>הרב ערן ברוש</td></tr>
+>>>>>>> 99744ce77ff915dc2959be7e657749a914e14705
         </tbody>
       </table>
     </div>
@@ -322,58 +340,63 @@
 
 
     <script>
-  let omerDay = parseInt(localStorage.getItem('omerDay')) || 24;
-  let lastUpdateDate = localStorage.getItem('lastUpdateDate');
-  let sunsetTime = null;
+<!--  let omerDay = parseInt(localStorage.getItem('omerDay')) || 25;  // קריאה מ־localStorage או ברירת מחדל 25-->
+<!--  let lastUpdateDate = localStorage.getItem('lastUpdateDate');-->
+<!--  let sunsetTime = null;-->
 
-  function displayOmerCount() {
-    const weeks = Math.floor(omerDay / 7);
-    const days = omerDay % 7;
-    const text = `היום ${omerDay} לעומר, שהם ${weeks} שבועות ו-${days} ימים`;
-    const el = document.getElementById('omer-count');
-    if (el) el.textContent = text;
-  }
+<!--  // פונקציה להצגת ספירת העומר-->
+<!--  function displayOmerCount() {-->
+<!--    const weeks = Math.floor(omerDay / 7);-->
+<!--    const days = omerDay % 7;-->
+<!--    const text = `היום ${omerDay} לעומר, שהם ${weeks} שבועות ו-${days} ימים`;-->
+<!--    const el = document.getElementById('omer-count');-->
+<!--    if (el) el.textContent = text;-->
+<!--  }-->
 
-  function fetchSunsetTime(lat, lng) {
-    const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&formatted=0`;
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        const sunsetUTC = new Date(data.results.sunset);
-        sunsetTime = new Date(sunsetUTC.toLocaleString('en-US', {
-          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-        }));
-        console.log("שקיעה היום ב:", sunsetTime.toLocaleTimeString());
-        updateOmerCount();
-      })
-      .catch(err => {
-        console.error("שגיאה בקבלת זמן שקיעה:", err);
-      });
-  }
+<!--  // פונקציה לשליפת זמן השקיעה-->
+<!--  function fetchSunsetTime(lat, lng) {-->
+<!--    const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&formatted=0`;-->
+<!--    fetch(url)-->
+<!--      .then(res => res.json())-->
+<!--      .then(data => {-->
+<!--        const sunsetUTC = new Date(data.results.sunset);-->
+<!--        sunsetTime = new Date(sunsetUTC.toLocaleString('en-US', {-->
+<!--          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone-->
+<!--        }));-->
+<!--        console.log("שקיעה היום ב:", sunsetTime.toLocaleTimeString());-->
+<!--        updateOmerCount();-->
+<!--      })-->
+<!--      .catch(err => {-->
+<!--        console.error("שגיאה בקבלת זמן שקיעה:", err);-->
+<!--      });-->
+<!--  }-->
 
-  function updateOmerCount() {
-    const now = new Date();
-    const todayStr = now.toISOString().split('T')[0]; // תאריך היום בפורמט YYYY-MM-DD
+<!--  // פונקציה לעדכון ספירת העומר-->
+<!--  function updateOmerCount() {-->
+<!--    const now = new Date();-->
+<!--    const todayStr = now.toISOString().split('T')[0]; // תאריך היום בפורמט YYYY-MM-DD-->
 
-    // רק אם עברנו את זמן השקיעה ועדיין לא עדכנו היום
-    if (sunsetTime && now >= sunsetTime && lastUpdateDate !== todayStr) {
-      omerDay++;
-      lastUpdateDate = todayStr;
-      localStorage.setItem('omerDay', omerDay);
-      localStorage.setItem('lastUpdateDate', todayStr);
-      console.log("עודכן ליום חדש לעומר:", omerDay);
-    }
+<!--    // רק אם עברנו את זמן השקיעה ועדיין לא עדכנו היום-->
+<!--    if (sunsetTime && now >= sunsetTime && lastUpdateDate !== todayStr) {-->
+<!--      omerDay++;  // הגדלת ספירת העומר-->
+<!--      lastUpdateDate = todayStr;-->
+<!--      localStorage.setItem('omerDay', omerDay); // שמירה ב־localStorage-->
+<!--      localStorage.setItem('lastUpdateDate', todayStr); // שמירה בתאריך האחרון לעדכון-->
+<!--      console.log("עודכן ליום חדש לעומר:", omerDay);-->
+<!--    }-->
 
-    displayOmerCount();
-  }
+<!--    displayOmerCount();-->
+<!--  }-->
 
-  window.addEventListener('DOMContentLoaded', () => {
-    const lat = 32.0853; // תל אביב
-    const lng = 34.7818;
-    fetchSunsetTime(lat, lng);
-    setInterval(updateOmerCount, 30000); // עדכון כל 30 שניות
-  });
-</script>
+<!--  // קריאה לפונקציות כאשר הדף נטען-->
+<!--  window.addEventListener('DOMContentLoaded', () => {-->
+<!--    const lat = 32.0853; // תל אביב-->
+<!--    const lng = 34.7818;-->
+<!--    fetchSunsetTime(lat, lng);-->
+<!--    setInterval(updateOmerCount, 30000); // עדכון כל 30 שניות-->
+<!--  });-->
+<!--</script>-->
+
 
 
 <script>
@@ -536,7 +559,7 @@ async function initializeDateTimeDisplay() {
   setInterval(() => {
     updateHebrewDate();
     updateGregorianDate();
-  }, 5 * 60 * 1000); // כל 5 דקות
+  }, 1 * 60 * 1000); // כל 5 דקות
 }
 
 // הפעלת הפונקציה בטעינת הדף
@@ -610,7 +633,7 @@ function updateAllData() {
 updateAllData();
 
 // עדכון כל 60 שניות
-setInterval(updateAllData, 60 * 1000);
+setInterval(updateAllData, 30 * 1000);
 
 // רענון הדף כל 8 שעות (288,000,000 מילישניות)
 setInterval(function() {
