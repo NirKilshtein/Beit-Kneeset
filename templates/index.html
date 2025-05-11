@@ -165,7 +165,7 @@
 
   <!-- כותרת -->
   <header class="py-2 flex items-center justify-center h-full">
-    <h1 class="text-3xl font-bold text-center text-orange-800", style="color: #B88A44;">ברוכים הבאים לבית הכנסת הספרדי "תפארת מורשת"</h1>
+    <h1 class="text-5xl font-bold text-center text-orange-800", style="color: #B88A44;">ברוכים הבאים לבית הכנסת הספרדי "תפארת מורשת"</h1>
   </header>
 
   <!-- תוכן ראשי -->
@@ -208,7 +208,9 @@
 
 
           <div class="card_shabat">
-    <h3 class="text-center font-bold text-orange-333333 text-3xl mb-6" style="color: #333333	;">זמני שבת</h3>
+    <h3 class="text-center font-bold text-3xl mb-2 leading-tight text-[#333333]">זמני שבת</h3>
+    <div class="text-center font-bold text-2xl mb-2 leading-snug text-[#333333]" id="parashat"></div>
+
     <div class="grid grid-cols-3 gap-1 text-center text-sm">
       <div>
         <div class="text-orange-333333">🕯️ הדלקת נרות 🕯️</div>
@@ -312,18 +314,48 @@
 
     <!-- סלייד 3 -->
     <div class="slide absolute transition-opacity duration-700 opacity-0" style="inset: 35px;">
-      <h3 class="text-5xl font-bold text-center mb-2 text-orange-800", style="color: #B88A44;">שיעורים </h3>
-      <table class="times-table text-sm">
-        <thead>
-          <tr><th>יום</th><th>שעה</th><th>נושא</th><th>מרצה</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>ראשון</td><td>20:00</td><td>טהרת המשפחה</td><td>הרב אליהו אלחרר</td></tr>
-          <tr><td>רביעי</td><td>20:00</td><td>פרשת השבוע</td><td>הרב ערן ברוש</td></tr>
-          <tr><td>שבת</td><td>17:25</td><td>הלכות שבת</td><td>הרב ערן ברוש</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <h3 class="text-6xl font-extrabold text-center mb-8 text-orange-800" style="font-family: 'Varela Round', sans-serif;">
+    שיעורים
+  </h3>
+  <table class="min-w-full bg-white shadow-lg rounded-xl overflow-hidden text-center border border-gray-300 text-xl font-bold tracking-wide">
+    <thead class="bg-orange-100 text-orange-900 text-2xl font-extrabold">
+      <tr>
+        <th class="py-4 px-5 border-b border-gray-300">יום</th>
+        <th class="py-4 px-5 border-b border-gray-300">שעה</th>
+        <th class="py-4 px-5 border-b border-gray-300">נושא</th>
+        <th class="py-4 px-5 border-b border-gray-300">מרצה</th>
+      </tr>
+    </thead>
+    <tbody class="text-gray-800">
+      <tr class="hover:bg-orange-50 transition">
+        <td class="py-5 px-5 border-b border-gray-200">ראשון</td>
+        <td class="py-5 px-5 border-b border-gray-200">20:00</td>
+        <td class="py-5 px-5 border-b border-gray-200">טהרת המשפחה</td>
+        <td class="py-5 px-5 border-b border-gray-200">הרב אליהו אלחרר</td>
+      </tr>
+      <tr class="hover:bg-orange-50 transition">
+        <td class="py-5 px-5 border-b border-gray-200">שני</td>
+        <td class="py-5 px-5 border-b border-gray-200">19:45</td>
+        <td class="py-5 px-5 border-b border-gray-200">לימוד בחברותא</td>
+        <td class="py-5 px-5 border-b border-gray-200">חברותא עם אברכים</td>
+      </tr>
+      <tr class="hover:bg-orange-50 transition">
+        <td class="py-5 px-5 border-b border-gray-200">רביעי</td>
+        <td class="py-5 px-5 border-b border-gray-200">20:00</td>
+        <td class="py-5 px-5 border-b border-gray-200">פרשת השבוע</td>
+        <td class="py-5 px-5 border-b border-gray-200">הרב ערן ברוש</td>
+      </tr>
+      <tr class="hover:bg-orange-50 transition">
+        <td class="py-5 px-5">שבת</td>
+        <td class="py-5 px-5">17:25</td>
+        <td class="py-5 px-5">הלכות שבת</td>
+        <td class="py-5 px-5">הרב ערן ברוש</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
 
 
 
@@ -416,7 +448,7 @@ async function updateShabbatTimes() {
       const hours = String(time.getHours()).padStart(2, '0'); // שעות
       const minutes = String(time.getMinutes()).padStart(2, '0'); // דקות
       const formattedTime = `${hours}:${minutes}`; // זמן בפורמט "HH:MM"
-
+      const parashats ="פרשת השבוע"; // פרשת השבוע
       // בהתאם לשם האירוע, מעדכנים את האלמנט המתאים
       if (event === 'hadlaka' && document.getElementById('hadlaka')) {
         document.getElementById('hadlaka').textContent = formattedTime;  // כניסת שבת
@@ -426,6 +458,9 @@ async function updateShabbatTimes() {
       }
       else if (event === 'micnhae_pleg' && document.getElementById('micnhae_pleg')) {
         document.getElementById('micnhae_pleg').textContent = formattedTime;  // פלג מנחה
+      }
+      else if (event === 'parashat' && document.getElementById('parashat')) {
+        document.getElementById('parashat').textContent = parashats;  // פרשת שבוע
       }
       else if (event === 'shir_shirim' && document.getElementById('shir_shirim')) {
         document.getElementById('shir_shirim').textContent = formattedTime;  // שיר השירים
