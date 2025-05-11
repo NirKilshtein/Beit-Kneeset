@@ -448,7 +448,9 @@ async function updateShabbatTimes() {
       const hours = String(time.getHours()).padStart(2, '0'); // שעות
       const minutes = String(time.getMinutes()).padStart(2, '0'); // דקות
       const formattedTime = `${hours}:${minutes}`; // זמן בפורמט "HH:MM"
-      const parashats ="פרשת השבוע"; // פרשת השבוע
+      
+    const parashats ="פרשת השבוע"; // פרשת השבוע
+    
       // בהתאם לשם האירוע, מעדכנים את האלמנט המתאים
       if (event === 'hadlaka' && document.getElementById('hadlaka')) {
         document.getElementById('hadlaka').textContent = formattedTime;  // כניסת שבת
@@ -461,6 +463,7 @@ async function updateShabbatTimes() {
       }
       else if (event === 'parashat' && document.getElementById('parashat')) {
         document.getElementById('parashat').textContent = parashats;  // פרשת שבוע
+        console.log(parashats);
       }
       else if (event === 'shir_shirim' && document.getElementById('shir_shirim')) {
         document.getElementById('shir_shirim').textContent = formattedTime;  // שיר השירים
