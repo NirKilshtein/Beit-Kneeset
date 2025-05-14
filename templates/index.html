@@ -164,28 +164,24 @@
 <div class="flex flex-col h-full">
 
   <!-- כותרת -->
-  <header class="py-2 flex items-center justify-center h-full" style="background-color: #f7e0b7cc;">
-    <h1 class="text-5xl font-bold text-center text-orange-800 text-shadow-lg/30 ", style="color: #B88A44;">ברוכים הבאים לבית הכנסת הספרדי "תפארת מורשת"</h1>
-  <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/a7b98a_IMG-20250309-WA0042.jpg"
-             alt="ברוכים הבאים לבית הכנסת הספרדי תפארת מורשת"
-             class="rounded-lg  w-full h-64 object-contain"/>
+  <header class="py-2 flex items-center justify-center h-full">
+    <h1 class="text-3xl font-bold text-center text-orange-800", style="color: #B88A44;">ברוכים הבאים לבית הכנסת הספרדי "תפארת מורשת"</h1>
   </header>
+
   <!-- תוכן ראשי -->
   <main class="flex-1 px-4">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-full">
 
       <!-- עמודה ימנית -->
       <div class="flex flex-col justify-between h-full">
+        <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/a7b98a_IMG-20250309-WA0042.jpg"
+             alt="ברוכים הבאים לבית הכנסת הספרדי תפארת מורשת"
+             class="rounded-lg mb-2 w-full h-32 object-contain"/>
 
         <div class="card text-center text-sm mb-2">
-        </BR>
-
-          <div class="text-orange-333333 font-semibold text-lg" id="hebrew-date">טוען...</div>
-          <div class="text-orange-333333 font-medium  text-lg "id="gregorian-date">טוען...</div>
+          <div class="text-orange-333333 font-semibold" id="hebrew-date">טוען...</div>
+          <div class="text-orange-333333 font-medium" id="gregorian-date">טוען...</div>
           <div class="text-orange-333333 font-bold text-lg" id="current-time">טוען...</div>
-          <hr class="my-4 border-t-2 border-[#e3c68d] w-3/4 mx-auto rounded-full" />
-
-          <iframe class="mx-auto " style="color: #B88A44;" src="https://sefirat-haomer.pages.dev/sefirat-haomer-script/live/?nusach=em&hideDate=true&fontSize=20" width="220" height="180" frameborder="0"></iframe>
 
         </div>
         
@@ -215,7 +211,7 @@
 
           <div class="card_shabat">
     <h3 class="text-center font-bold text-3xl mb-2 leading-tight text-[#333333]">זמני שבת</h3>
-    <div class="text-center font-bold text-2xl mb-2 leading-snug text-[#333333]" id="parashat"></div>
+
 
     <div class="grid grid-cols-3 gap-1 text-center text-sm">
       <div>
@@ -295,15 +291,16 @@
   </p>
 </div>
 
-<!--<div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">-->
-<!--  <h2 class="text-8xl font-bold" style="color: #B88A44;">-->
-<!--    ספירת העומר-->
-<!--  </h2>-->
+<div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
+  <h2 class="text-8xl font-bold" style="color: #B88A44;">
+    ספירת העומר
+  </h2>
 
-<!--  <p class="mt-4 text-6xl text-gray-800 leading-relaxed"  id="omer-count">-->
-<!--    טוען...-->
-<!--  </p>-->
-<!--</div>-->
+  <p class="mt-4 text-6xl text-gray-800 leading-relaxed"  id="omer-count">
+              <iframe class="mx-auto " style="color: #B88A44;" src="https://sefirat-haomer.pages.dev/sefirat-haomer-script/live/?nusach=em&hideDate=true&fontSize=40" width="400" height="180" frameborder="0"></iframe>
+
+  </p>
+</div>
 
     <!-- סלייד 3 -->
     <div class="slide absolute transition-opacity duration-700 opacity-0" style="inset: 35px;">
@@ -639,6 +636,8 @@ function parseHebcalTimes(data) {
 }
 
 </script>
+
+
 <script>
 function updateAllData() {
   // שומרים את מיקום הגלילה הנוכחי
