@@ -276,19 +276,18 @@
     <!-- סלייד 2 -->
    <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
   <h2 class="text-3xl font-bold" style="color: #B88A44;">
-     דבר תורה - פרשת אמור
+     דבר תורה - בהר חקותי
   </h2>
 
   <p class="text-3xl font-bold" style="color: #B88A44;">
-    "אמור אל הכוהנים בני אהרן ואמרת אליהם..." (ויקרא כ"א, א')
+    "וּקְרָאתֶם דְּרֹור בָּאָרֶץ לְכָל־יֹשְׁבֶיהָ" (ויקרא כ"ה, י')
   </p>
 
   <p class="mt-4 text-1xl font-bold text-gray-800 leading-relaxed">
-    לשון כפולה זו – "אמור ואמרת" – זכתה לפרשנות חז"ל: להזהיר גדולים על הקטנים. לא מספיק לשמור את הערכים לעצמנו – עלינו גם להעביר אותם הלאה.<br>
-    פרשת אמור עוסקת בקדושת הכוהנים ובמועדי השנה – ובכך מלמדת שכל אדם יכול להיות "כוהן קטן" – מי שמקדש את המרחב והזמן סביבו.<br>
-    דרך הדיבור, הדוגמה האישית, ושמירת מועדי הקודש – אנחנו יוצרים חיים של משמעות, ערכים ואור.<br>
-    מסר לשולחן שבת: איך אנחנו יכולים “לאמר ולומר” – לדבר ולעשות – כך שנשפיע לטובה על ילדינו, תלמידינו וסביבתנו?
-  </p>
+    פרשת בהר־חקותי עוסקת בשמיטה, יובל וחירות – ערכים שמזכירים לנו שהחופש האמיתי לא נמדד רק בקרקע, אלא בלב. השבתת האדמה והחזרת רכוש מלמדות שכל אחד זכאי להתחלה חדשה.<br>
+    חוקותי מוסיפה: גם כשהעם שוגה – הקב"ה לא שוכח את בריתו. יש תמיד תקווה, תיקון וגאולה.<br>
+    מסר לשולחן שבת: האם גם אנחנו מסוגלים "לקרוא דרור" – להרפות ממה שכובל אותנו, לבחור ביושר, באמונה, ובחירות פנימית אמיתית?
+</p>
 </div>
 
 <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
@@ -674,5 +673,36 @@ setInterval(function() {
 }, 1 * 60 * 60 * 1000);
 
   </script>
+
+<script>
+  // רענון הדף בדיוק בשעה מסוימת
+  function refreshAt(hour, minute = 0, second = 0) {
+    const now = new Date();
+    const then = new Date();
+
+    then.setHours(hour);
+    then.setMinutes(minute);
+    then.setSeconds(second);
+
+    // אם השעה הרצויה כבר עברה היום – הגדר למחר
+    if (then <= now) {
+      then.setDate(then.getDate() + 1);
+    }
+
+    const timeout = then.getTime() - now.getTime();
+
+    console.log(`רענון הדף מתוזמן לשעה: ${then.toLocaleTimeString('he-IL')}`);
+
+    setTimeout(() => {
+      console.log("🔁 מתבצע רענון אוטומטי בשעה היעודה.");
+      location.reload();
+    }, timeout);
+  }
+
+  // קריאה להפעלת הריפרוש ב־18:00
+  refreshAt(19, 50, 0);
+</script>
+
+
 </body>
 </html>
