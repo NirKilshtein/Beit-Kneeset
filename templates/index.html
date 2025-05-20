@@ -210,8 +210,7 @@
 
 
           <div class="card_shabat">
-    <h3 class="text-center font-bold text-3xl mb-2 leading-tight text-[#333333]">זמני שבת</h3>
-
+    <h3 class="text-center font-bold text-2xl mb-2 leading-tight text-[#333333]" id="parashat">זמני שבת פרשת </h3>
 
     <div class="grid grid-cols-3 gap-1 text-center text-sm">
       <div>
@@ -412,7 +411,7 @@
 <!--    fetchSunsetTime(lat, lng);-->
 <!--    setInterval(updateOmerCount, 30000); // עדכון כל 30 שניות-->
 <!--  });-->
-<!--</script>-->
+</script>
 
 
 
@@ -425,23 +424,21 @@ async function updateShabbatTimes() {
 
     // ממתינים שהתשובה תגיע
     const data = await response.json();  // מפענחים את התשובה ב-JSON
-
     // דפדוף בנתונים ועדכון האלמנטים
     data.forEach(item => {
       // כל אובייקט בנתונים מכיל את המפתח 'shabt' ואת הזמן
       const event = item.nerot; // לדוגמה: 'havdalah', 'micnhae'
       const timeUTC = item[Object.keys(item)[1]]; // מקבל את הזמן לפי שם התאריך
-
       // המרת הזמן לפורמט קריא: רק השעה והדקות
       const time = new Date(timeUTC);
       const hours = String(time.getHours()).padStart(2, '0'); // שעות
       const minutes = String(time.getMinutes()).padStart(2, '0'); // דקות
       const formattedTime = `${hours}:${minutes}`; // זמן בפורמט "HH:MM"
-      const parashats ="פרשת השבוע"; // פרשת השבוע
+      
       // בהתאם לשם האירוע, מעדכנים את האלמנט המתאים
       if (event === 'hadlaka' && document.getElementById('hadlaka')) {
         document.getElementById('hadlaka').textContent = formattedTime;  // כניסת שבת
-      }
+              }
       else if (event === 'shabt_out' && document.getElementById('shabt_out')) {
         document.getElementById('shabt_out').textContent = formattedTime;  // יציאת שבת
       }
@@ -449,8 +446,7 @@ async function updateShabbatTimes() {
         document.getElementById('micnhae_pleg').textContent = formattedTime;  // פלג מנחה
       }
       else if (event === 'parashat' && document.getElementById('parashat')) {
-        document.getElementById('parashat').textContent = parashats;  // פרשת שבוע
-        console.log(parashats);
+        document.getElementById('parashat').textContent += timeUTC; // פרשת שבוע
       }
       else if (event === 'shir_shirim' && document.getElementById('shir_shirim')) {
         document.getElementById('shir_shirim').textContent = formattedTime;  // שיר השירים
