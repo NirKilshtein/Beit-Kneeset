@@ -210,8 +210,7 @@
 
 
           <div class="card_shabat">
-    <h3 class="text-center font-bold text-3xl mb-2 leading-tight text-[#333333]">זמני שבת</h3>
-
+<h3 class="text-center font-bold text-2xl mb-2 leading-tight text-[#333333]" id="parashat">זמני שבת - פרשת </h3>
 
     <div class="grid grid-cols-3 gap-1 text-center text-sm">
       <div>
@@ -313,24 +312,6 @@
 
     <!-- סלייד 3 -->
     <div class="slide absolute transition-opacity duration-700 opacity-0" style="inset: 35px;">
-<<<<<<< HEAD
-      <h3 class="text-5xl font-bold text-center mb-2 text-orange-800", style="color: #B88A44;">שיעורים </h3>
-      <table class="times-table text-sm">
-        <thead>
-          <tr><th>יום</th><th>שעה</th><th>נושא</th><th>מרצה</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>ראשון</td><td>20:00</td><td>טהרת המשפחה</td><td>הרב אליהו אלחרר</td></tr>
-          <tr><td>רביעי</td><td>20:00</td><td>פרשת השבוע</td><td>הרב ערן ברוש</td></tr>
-<<<<<<< HEAD
-          <tr><td>שבת</td><td>17:50</td><td>הלכות שבת</td><td>הרב ערן ברוש</td></tr>
-=======
-          <tr><td>שבת</td><td>17:25</td><td>הלכות שבת</td><td>הרב ערן ברוש</td></tr>
->>>>>>> 99744ce77ff915dc2959be7e657749a914e14705
-        </tbody>
-      </table>
-    </div>
-=======
   <h3 class="text-6xl font-extrabold text-center mb-8 text-orange-800" style="font-family: 'Varela Round', sans-serif;">
      שיעורי תורה
   </h3>
@@ -373,7 +354,6 @@
 </div>
 
 
->>>>>>> 9379087d740ed9507b2a6265e97c275cbf9e06ac
 
 
 
@@ -466,7 +446,7 @@ async function updateShabbatTimes() {
       const hours = String(time.getHours()).padStart(2, '0'); // שעות
       const minutes = String(time.getMinutes()).padStart(2, '0'); // דקות
       const formattedTime = `${hours}:${minutes}`; // זמן בפורמט "HH:MM"
-      const parashats ="פרשת השבוע"; // פרשת השבוע
+<!--      const parashats ="פרשת השבוע"; // פרשת השבוע-->
       // בהתאם לשם האירוע, מעדכנים את האלמנט המתאים
       if (event === 'hadlaka' && document.getElementById('hadlaka')) {
         document.getElementById('hadlaka').textContent = formattedTime;  // כניסת שבת
@@ -478,8 +458,7 @@ async function updateShabbatTimes() {
         document.getElementById('micnhae_pleg').textContent = formattedTime;  // פלג מנחה
       }
       else if (event === 'parashat' && document.getElementById('parashat')) {
-        document.getElementById('parashat').textContent = parashats;  // פרשת שבוע
-        console.log(parashats);
+                document.getElementById('parashat').textContent += timeUTC; // פרשת שבוע
       }
       else if (event === 'shir_shirim' && document.getElementById('shir_shirim')) {
         document.getElementById('shir_shirim').textContent = formattedTime;  // שיר השירים
