@@ -28,7 +28,7 @@
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   padding: 0px;
-  border-radius: 50px;
+  border-radius: 30px;
   box-shadow: 0 8px 80px rgba(0, 0, 0, 0.2);
   margin: 10px auto;
   max-width: 1600px;
@@ -44,6 +44,19 @@
   box-shadow: 0 8px 80px rgba(0, 0, 0, 0.2);
   margin: 10px auto;
   max-width: 1600px;
+  font-size: 4.5rem; /* טקסט ענק */
+}
+
+.card_custom {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 0px;
+  border-radius: 50px;
+  box-shadow: 0 8px 80px rgba(0, 0, 0, 0.2);
+  margin: 150px auto;
+  max-width: 1600px;
+  width: 100%; /* Make it expand */
+
   font-size: 4.5rem; /* טקסט ענק */
 }
 
@@ -161,6 +174,7 @@
 </head>
 <body>
 
+
 <div class="flex flex-col h-full">
 
   <!-- כותרת -->
@@ -170,7 +184,7 @@
 
   <!-- תוכן ראשי -->
   <main class="flex-1 px-4">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-full">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 h-full">
 
       <!-- עמודה ימנית -->
       <div class="flex flex-col justify-between h-full">
@@ -252,6 +266,8 @@
     </div>
   </div>
 </div>
+
+
 
 <div class="md:col-span-2 flex flex-col justify-between h-full relative overflow-hidden">
 
@@ -361,9 +377,102 @@
 </div>
 
 
+<div class="grid grid-cols-20 gap-10 h-full">
+  <!-- Card spans 10 out of 20 columns and aligns to the left with margin-top -->
+  <div class="col-span-10 justify-self-start mt-[4rem]">
+    <div class="flex flex-col justify-start text-center bg-white/80 backdrop-blur-lg p-[5.5rem] rounded-[50px] shadow-[0_8px_80px_rgba(0,0,0,0.2)] w-full">
+
+      <!-- Heading inside, positioned at the top -->
+      <h2 class="text-xl font-bold text-[#333333] mb-6 mt-[-2rem]">🕒 זמני היום</h2>
+
+      <!-- Here go the times -->
+      <div id="zmanim" class="space-y-5 text-right text-sm font-medium text-[#333]"></div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- סקריפט להטמעת זמני היום -->
+<script>
+function formatTime(isoString) {
+  const date = new Date(isoString);
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  return `${hours}:${minutes}`;
+}
+
+const url = 'https://www.hebcal.com/zmanim?cfg=json&geonameid=282926&tzid=Asia/Jerusalem';
+
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    const times = data.times;
+    const zmanimContainer = document.getElementById('zmanim');
+
+    const zmanimList = [
+      ['🌅 עלות השחר', formatTime(times.alotHaShachar)],
+      ['🌞 הנץ החמה', formatTime(times.sunrise)],
+      ['🕒 סוף זמן ק"ש מ"א', formatTime(times.sofZmanShmaMGA)],
+       ['🕒 סוף זמן ק"ש גר"א', formatTime(times.sofZmanShma)],
+      ['🕓 סוף זמן תפילה', formatTime(times.sofZmanTfilla)],
+      ['☀️ חצות היום', formatTime(times.chatzot)],
+      ['🕔 מנחה גדולה', formatTime(times.minchaGedola)],
+      ['🕕 מנחה קטנה', formatTime(times.minchaKetana)],
+      ['🕖 פלג המנחה', formatTime(times.plagHaMincha)],
+      ['🌇 שקיעה', formatTime(times.sunset)],
+      ['🌃 צאת הכוכבים', formatTime(times.beinHaShmashos)]
+    ];
+
+    zmanimList.forEach(([label, value]) => {
+      const p = document.createElement('p');
+      p.textContent = `${label}: ${value}`;
+      zmanimContainer.appendChild(p);
+    });
+  })
+  .catch(error => {
+    console.error('⚠️ שגיאה:', error.message);
+    const zmanimContainer = document.getElementById('zmanim');
+    zmanimContainer.innerHTML = '<p class="text-red-600">שגיאה בטעינת זמני היום</p>';
+  });
+</script>
+
+
+
   </main>
 
+<script>
+function formatTime(isoString) {
+  const date = new Date(isoString);
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  return `${hours}:${minutes}`;
+}
 
+const url = 'https://www.hebcal.com/zmanim?cfg=json&geonameid=294263&tzid=Asia/Jerusalem';
+
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    const times = data.times;
+    console.log('📅 תאריך:', data.date);
+    console.log('🌅 עלות השחר:', formatTime(times.alotHaShachar));
+    console.log('🌞 הנץ החמה:', formatTime(times.sunrise));
+    console.log('🕒 סוף זמן ק"ש:', formatTime(times.sofZmanShma));
+    console.log('🕓 סוף זמן תפילה:', formatTime(times.sofZmanTfilla));
+    console.log('☀️ חצות היום:', formatTime(times.chatzot));
+    console.log('🕔 מנחה גדולה:', formatTime(times.minchaGedola));
+    console.log('🕕 מנחה קטנה:', formatTime(times.minchaKetana));
+    console.log('🕖 פלג המנחה:', formatTime(times.plagHaMincha));
+    console.log('🌇 שקיעה:', formatTime(times.sunset));
+    console.log('🌃 צאת הכוכבים (72 דק\'): ', formatTime(times.tzeit72min));
+  })
+  .catch(error => {
+    console.error('⚠️ שגיאה:', error.message);
+  });
+</script>
 
     <script>
 <!--  let omerDay = parseInt(localStorage.getItem('omerDay')) || 25;  // קריאה מ־localStorage או ברירת מחדל 25-->
@@ -708,6 +817,7 @@ setInterval(function() {
   }
 
   // קריאה להפעלת הריפרוש ב־18:00
+  refreshAt(5, 0, 0);    // רענון ב־05:00
   refreshAt(19, 50, 0);
 </script>
 
