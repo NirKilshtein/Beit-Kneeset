@@ -85,7 +85,7 @@
   padding: 50px;
   border-radius: 100px;
   box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
-  margin-top: 150px; /* זה מה שמזיז אותו טיפה למטה */
+  margin-top: 56px; /* זה מה שמזיז אותו טיפה למטה */
 }
 
     .times-table {
@@ -167,6 +167,28 @@
   100% {
     transform: translateY(-100%);
   }
+}
+
+#yizkor-slider {
+  height: 250px;
+}
+
+#slides {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.yizkor-slide {
+  opacity: 0;
+  position: absolute;
+  transition: opacity 1s ease-in-out;
+}
+
+.yizkor-slide.active {
+  opacity: 1;
+  position: relative;
 }
 
 
@@ -295,6 +317,42 @@
 <!--     class="mx-auto mt-10 rounded-xl shadow-lg w-[370px] max-w-full">-->
 <!--</a>-->
 <!--  </div>-->
+
+
+ <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
+  <h2 class="text-4xl font-bold mb-6" style="color: #B88A44;">לזכר הנפטרים 🕯</h2>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 justify-center items-center px-4">
+    <!-- ריבוע נפטר -->
+    <div class="bg-white rounded-lg shadow p-3 text-center text-sm">
+      <div class="text-2xl mb-1">🕯</div>
+      <div class="font-bold text-gray-800">רחל בת שרה</div>
+      <div class="text-gray-600 text-xs">י״ב בתשרי</div>
+    </div>
+
+    <!-- ריבוע נפטר -->
+    <div class="bg-white rounded-lg shadow p-3 text-center text-sm">
+      <div class="text-2xl mb-1">🕯</div>
+      <div class="font-bold text-gray-800">יוסף בן שמעון</div>
+      <div class="text-gray-600 text-xs">ד׳ בניסן</div>
+    </div>
+
+    <!-- ריבוע נפטר -->
+    <div class="bg-white rounded-lg shadow p-3 text-center text-sm">
+      <div class="text-2xl mb-1">🕯</div>
+      <div class="font-bold text-gray-800">שרה לאה בת מרגלית</div>
+      <div class="text-gray-600 text-xs">כ״ה באלול</div>
+    </div>
+
+    <!-- ריבוע נפטר -->
+    <div class="bg-white rounded-lg shadow p-3 text-center text-sm">
+      <div class="text-2xl mb-1">🕯</div>
+      <div class="font-bold text-gray-800">יצחק בן רפאל</div>
+      <div class="text-gray-600 text-xs">ט׳ באדר</div>
+    </div>
+  </div>
+</div>
+
 
     <!-- סלייד 2 -->
    <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
