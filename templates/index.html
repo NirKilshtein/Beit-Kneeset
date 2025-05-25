@@ -250,7 +250,7 @@
 
     <div class="grid grid-cols-3 gap-1 text-center text-sm">
       <div>
-        <div class="text-orange-333333">🕯️ הדלקת נרות 🕯️</div>
+        <div class="text-orange-333333">🕯️ הדלקת נרות ️</div>
         <div id="hadlaka"></div>
       </div>
       <div>
@@ -355,21 +355,22 @@
 
 
     <!-- סלייד 2 -->
-   <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
+  <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
   <h2 class="text-3xl font-bold" style="color: #B88A44;">
-     דבר תורה - פרשת דברים
+     דבר תורה - פרשת במדבר
   </h2>
 
   <p class="text-3xl font-bold" style="color: #B88A44;">
-    "אֵיכָה אֶשָּׂא לְבַדִּי טַרְחֲכֶם וּמַשַּׂאֲכֶם וְרִיבְכֶם" (דברים א', י"ב)
+    "שְׂאוּ אֶת רֹאשׁ כָּל עֲדַת בְּנֵי יִשְׂרָאֵל..." (במדבר א', ב')
   </p>
 
   <p class="mt-4 text-1xl font-bold text-gray-800 leading-relaxed">
-    פרשת דברים פותחת את ספר דברים – נאומו האחרון של משה. הוא משחזר את המסע במדבר, אך לא רק כסיפור היסטורי, אלא כתיקון. הדגש עובר לאחריות, הנהגה, והפקת לקחים מהעבר.<br>
-    הפסוק "אֵיכָה אֶשָּׂא לְבַדִּי..." מבטא את כאב האחריות – אך גם את האמון בעם וביכולת להתבגר, להתקדם, ולהתעלות.<br>
-    מסר לשולחן שבת: האם אנחנו מקשיבים ללקחי העבר? האם אנו מוכנים לקחת אחריות אמיתית – בבית, בעבודה, ובחברה?
+    פרשת במדבר פותחת את ספר במדבר, ומתארת מפקד גדול של בני ישראל במדבר סיני. אך מעבר לספירה טכנית – התורה מלמדת אותנו שכל אדם נחשב, כל אחד ואחת חשובים בפני עצמם.<br>
+    הביטוי "שְׂאוּ אֶת רֹאשׁ" מדגיש הרמה, כבוד וייחודיות – לא רק לספור, אלא לשאת את הראש, לראות את האדם שמאחורי המספר.<br>
+    מסר לשולחן שבת: האם אנו מצליחים לראות כל אדם בסביבתנו כעולם מלא? האם אנחנו נותנים מקום וחשיבות לאחר – במשפחה, בקהילה, ובעבודה?
   </p>
 </div>
+
 
 <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
   <h2 class="text-8xl font-bold" style="color: #B88A44;">
@@ -655,6 +656,11 @@ async function updateShabbatTimes() {
       else if (event === 'arvit_hol' && document.getElementById('arvit_hol')) {
         document.getElementById('arvit_hol').textContent = formattedTime;  // ערבית
       }
+
+      else if (event === 'dver_tora' && document.getElementById('dver_tora')) {
+                document.getElementById('dver_tora').textContent += timeUTC; // פרשת שבוע
+      }
+
 
       // אם יש יותר אירועים, ניתן להוסיף תנאים נוספים
     });
