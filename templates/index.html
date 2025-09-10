@@ -351,20 +351,31 @@
 
 
 <!-- סלייד 2 - פרשת כי תצא -->
+<!--<div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">-->
+<!--  <h2 class="text-3xl font-bold" style="color: #B88A44;">-->
+<!--    דבר תורה - פרשת כִּי תֵצֵא-->
+<!--  </h2>-->
+
+<!--  <p class="text-3xl font-bold" style="color: #B88A44;">-->
+<!--    "כִּי תֵצֵא לַמִּלְחָמָה עַל אֹיְבֶיךָ..." (דברים כ"א, י')-->
+<!--  </p>-->
+
+<!--  <p class="mt-4 text-1xl font-bold text-gray-800 leading-relaxed">-->
+<!--    הפרשה פותחת בתיאור מלחמה חיצונית – אך חכמינו ראו בה גם משל למלחמה פנימית של האדם עם יצריו ונטיותיו.<br>-->
+<!--    כל יציאה ל"מלחמה" בחיים – בין אם במאבק פנימי או אתגר חיצוני – היא הזדמנות לצמיחה, לבחירה בטוב ולתיקון עצמי.<br>-->
+<!--    מסר לשולחן שבת: בכל התמודדות, עלינו לזכור שיש לנו הכוח לבחור נכון, להתגבר ולשוב עם ניצחון פנימי.-->
+<!--  </p>-->
+<!--</div>-->
+
+  <!-- סלייד 2 - דבר תורה -->
 <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-0">
   <h2 class="text-3xl font-bold" style="color: #B88A44;">
-    דבר תורה - פרשת כִּי תֵצֵא
+    דבר תורה - <span id="parashat_name">פרשת </span>
   </h2>
 
-  <p class="text-3xl font-bold" style="color: #B88A44;">
-    "כִּי תֵצֵא לַמִּלְחָמָה עַל אֹיְבֶיךָ..." (דברים כ"א, י')
-  </p>
-
-  <p class="mt-4 text-1xl font-bold text-gray-800 leading-relaxed">
-    הפרשה פותחת בתיאור מלחמה חיצונית – אך חכמינו ראו בה גם משל למלחמה פנימית של האדם עם יצריו ונטיותיו.<br>
-    כל יציאה ל"מלחמה" בחיים – בין אם במאבק פנימי או אתגר חיצוני – היא הזדמנות לצמיחה, לבחירה בטוב ולתיקון עצמי.<br>
-    מסר לשולחן שבת: בכל התמודדות, עלינו לזכור שיש לנו הכוח לבחור נכון, להתגבר ולשוב עם ניצחון פנימי.
-  </p>
+  <div id="dvar_tora" class="mt-4 text-lg font-normal text-gray-800 leading-relaxed space-y-4">
+  <!-- התוכן מתווסף כאן -->
+</div>
 </div>
 
 
@@ -410,13 +421,13 @@
       </tr>
       <tr class="hover:bg-orange-50 transition">
         <td class="py-5 px-5 border-b border-gray-200">רביעי</td>
-        <td class="py-5 px-5 border-b border-gray-200">20:00</td>
+        <td class="py-5 px-5 border-b border-gray-200">לאחר תפילת ערבית</td>
         <td class="py-5 px-5 border-b border-gray-200">פרשת השבוע</td>
         <td class="py-5 px-5 border-b border-gray-200">הרב ערן ברוש</td>
       </tr>
       <tr class="hover:bg-orange-50 transition">
         <td class="py-5 px-5">שבת</td>
-        <td class="py-5 px-5">17:40</td>
+        <td class="py-5 px-5" id="shior_shabat"></td>
         <td class="py-5 px-5">הלכות שבת</td>
         <td class="py-5 px-5">הרב ערן ברוש</td>
       </tr>
@@ -601,7 +612,7 @@ async function updateShabbatTimes() {
       // כל אובייקט בנתונים מכיל את המפתח 'shabt' ואת הזמן
       const event = item.nerot; // לדוגמה: 'havdalah', 'micnhae'
       const timeUTC = item[Object.keys(item)[1]]; // מקבל את הזמן לפי שם התאריך
-
+      const value = item[Object.keys(item)[1]];
       // המרת הזמן לפורמט קריא: רק השעה והדקות
       const time = new Date(timeUTC);
       const hours = String(time.getHours()).padStart(2, '0'); // שעות
@@ -615,6 +626,18 @@ async function updateShabbatTimes() {
       else if (event === 'shabt_out' && document.getElementById('shabt_out')) {
         document.getElementById('shabt_out').textContent = formattedTime;  // יציאת שבת
       }
+
+      else if (event === 'shior_shabat' && document.getElementById('shior_shabat')) {
+        document.getElementById('shior_shabat').textContent = formattedTime;  // יציאת שבת
+      }
+
+      else if (event === 'parashat_name' && document.getElementById('parashat_name')) {
+    document.getElementById('parashat_name').textContent = 'פרשת ' + value;
+}
+
+    else if (event === 'dvar_tora' && document.getElementById('dvar_tora')) {
+    document.getElementById('dvar_tora').textContent = value;
+}
       else if (event === 'micnhae_pleg' && document.getElementById('micnhae_pleg')) {
         document.getElementById('micnhae_pleg').textContent = formattedTime;  // פלג מנחה
       }
