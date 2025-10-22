@@ -298,13 +298,9 @@
 <div class="slide notes_new text-center absolute inset-0 transition-opacity duration-700 opacity-100">
   <h2 class="text-6xl font-bold" style="color: #B88A44;">הודעות חשובות</h2>
 
-  <p class="mt-4 text-3xl text-gray-800 leading-relaxed">
-לאחר היום הקדוש – יום הכיפורים – אנו מבקשים לאחל לכל בית ישראל:
-שיתקבלו תפילותינו ברחמים וברצון, ושהטהרה והכנות שבלב ילוו אותנו הלאה לכל ימות השנה.
-יהי רצון שנזכה לפתיחה חדשה, ללב נקי, לסליחה הדדית ולשלום פנימי וחברתי.
-שנה טובה, מבורכת וחתימה טובה לכל עם ישראל.
-</p>
-<div class="mt-6 text-2xl text-orange-900 leading-relaxed max-w-3xl mx-auto">
+<div id="notes" class="mt-10 text-2xl font-normal text-gray-800 leading-loose space-y-4">
+  </div>
+<div id="welcome" class="mt-10 text-2xl font-normal text-gray-800 leading-loose space-y-4">
 
   </div>
 </div>
@@ -629,6 +625,12 @@ async function updateShabbatTimes() {
     else if (event === 'dvar_tora' && document.getElementById('dvar_tora')) {
     document.getElementById('dvar_tora').textContent = value;
 }
+       else if (event === 'notes' && document.getElementById('notes')) {
+    document.getElementById('notes').textContent = value;
+}
+       else if (event === 'welcome' && document.getElementById('welcome')) {
+    document.getElementById('welcome').textContent = value;
+}
       else if (event === 'micnhae_pleg' && document.getElementById('micnhae_pleg')) {
         document.getElementById('micnhae_pleg').textContent = formattedTime;  // פלג מנחה
       }
@@ -672,6 +674,7 @@ async function updateShabbatTimes() {
       else if (event === 'dver_tora' && document.getElementById('dver_tora')) {
                 document.getElementById('dver_tora').textContent += timeUTC; // פרשת שבוע
       }
+
 
 
       // אם יש יותר אירועים, ניתן להוסיף תנאים נוספים
@@ -790,7 +793,7 @@ document.addEventListener('DOMContentLoaded', initializeDateTimeDisplay);
   setInterval(() => {
     currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
-  }, 10000); // כל 2 שניות
+  }, 20000); // כל 2 שניות
 
   // התחלה
   showSlide(currentSlide);
