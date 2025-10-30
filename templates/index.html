@@ -665,10 +665,10 @@ async function updateShabbatTimes() {
         document.getElementById('shaharit_hol').textContent = formattedTime;  // שחרית מניין שני
       }
       else if (event === 'micnhae_hol' && document.getElementById('micnhae_hol')) {
-        document.getElementById('micnhae_hol').textContent = formattedTime;  // מנחה רגילה
+        document.getElementById('micnhae_hol').textContent = value;  // מנחה רגילה
       }
       else if (event === 'arvit_hol' && document.getElementById('arvit_hol')) {
-        document.getElementById('arvit_hol').textContent = formattedTime;  // ערבית
+        document.getElementById('arvit_hol').textContent = value;  // ערבית
       }
 
       else if (event === 'dver_tora' && document.getElementById('dver_tora')) {
