@@ -258,16 +258,16 @@
         <div id="shabt_out"></div>
       </div>
       <div>
-        <div class="text-orange-333333">⛅ פלג המנחה</div>
-        <div id="micnhae_pleg"></div>
-      </div>
-      <div>
         <div class="text-orange-333333">📖 שיר השירים</div>
         <div id="shir_shirim"></div>
       </div>
       <div>
         <div class="text-orange-333333">🕍 מנחה וקבלת שבת</div>
         <div id="kabalt_shabt"></div>
+      </div>
+      <div>
+        <div class="text-orange-333333"> ☀️ שחרית נץ</div>
+        <div id="netz_shabat"></div>
       </div>
       <div>
         <div class="text-orange-333333">☀️ שחרית</div>
@@ -326,6 +326,12 @@
 
     <div class="bg-white rounded-lg shadow p-3 text-center text-sm">
       <div class="text-2xl mb-1">🕯</div>
+      <div class="font-bold text-gray-800"> ז'קלין בת פלורה ז"ל</div>
+      <div class="text-gray-600 text-xs">ז' חשוון תשפ"ו</div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow p-3 text-center text-sm">
+      <div class="text-2xl mb-1">🕯</div>
       <div class="font-bold text-gray-800"> שירן בת מזל ז"ל</div>
       <div class="text-gray-600 text-xs">כ"ד באייר תשע"ט</div>
     </div>
@@ -360,7 +366,7 @@
     דבר תורה - <span id="parashat_name">פרשת </span>
   </h2>
 
-  <div id="dvar_tora" class="mt-4 text-lg font-normal text-gray-800 leading-relaxed space-y-4">
+  <div id="dvar_tora" class="mt-4 text-2xl font-normal text-gray-800 leading-relaxed space-y-4">
   <!-- התוכן מתווסף כאן -->
 </div>
 </div>
@@ -631,8 +637,8 @@ async function updateShabbatTimes() {
        else if (event === 'welcome' && document.getElementById('welcome')) {
     document.getElementById('welcome').textContent = value;
 }
-      else if (event === 'micnhae_pleg' && document.getElementById('micnhae_pleg')) {
-        document.getElementById('micnhae_pleg').textContent = formattedTime;  // פלג מנחה
+      else if (event === 'netz_shabat' && document.getElementById('netz_shabat')) {
+        document.getElementById('netz_shabat').textContent = formattedTime;  // פלג מנחה
       }
       else if (event === 'parashat' && document.getElementById('parashat')) {
                 document.getElementById('parashat').textContent += timeUTC; // פרשת שבוע
